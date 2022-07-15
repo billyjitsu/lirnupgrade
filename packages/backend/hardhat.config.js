@@ -1,8 +1,9 @@
 require('@nomiclabs/hardhat-waffle');
 require('dotenv').config({ path: '../../.env' });
-
+require("@openzeppelin/hardhat-upgrades");
 require('hardhat-deploy');
 require('@nomiclabs/hardhat-ethers');
+require("@nomiclabs/hardhat-etherscan");
 
 const defaultNetwork = 'localhost';
 
@@ -37,12 +38,12 @@ module.exports = {
     //   url: `https://ropsten.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`,
     //   accounts: [`${process.env.PRIVATE_KEY}`],
     // },
-    // rinkeby: {
-    //   chainId: 4,
-    //   url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
-    //   url: `https://rinkeby.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`,
-    //   accounts: [`${process.env.PRIVATE_KEY}`],
-    // },
+     rinkeby: {
+       chainId: 4,
+       url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
+       url: `https://rinkeby.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`,
+       accounts: [`${process.env.PRIVATE_KEY}`],
+     },
     // goerli: {
     //   chainId: 5,
     //   url: `https://eth-goerli.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
@@ -81,5 +82,8 @@ module.exports = {
       default: 0, // here this will by default take the first account as deployer
     },
     tokenOwner: 1,
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };
